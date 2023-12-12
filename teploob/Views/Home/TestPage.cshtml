@@ -3,8 +3,22 @@
     ViewData["Title"] = "Home Page";
 }
 
+
+<div class="text-center">
+    <div class="container border p-3">
+        <div class="form-group">
+            <h2>Расчет теплообмена в противоточном движении кусковых материалов и газов в плотном продуваемом слое</h2>
+        </div>
+    </div>
+    <br />
+</div>
+
+
 <div class="text-left">
-    <h1 class="display-4">TEst PAGE </h1>
+    <br />
+    <h5><b>Введите свои данные для рассчета:</b></h5>
+    <br />
+
     @if(Model != null)
     {
         <div>Сумма: @Model.Sum</div>
@@ -13,7 +27,7 @@
 
         <table class="table table-hover table-bordered">
             <tr>
-                <td>X</td>
+                <td>Высота слоя</td>
                  @foreach(var number in Model.Rows)
                  {
                     <td>@number.X</td>
@@ -30,52 +44,53 @@
     }
 
     <form action="/Home/TestPage/" method="post">
-        <div class="mb-3">
-            <label for="x" class="form-label">X</label>
-            <input name="x" class="form-control" id="x" />
-        </div>
 
         <div class="mb-3">
-            <label for="y" class="form-label">Y</label>
-            <input name="y" class="form-control" id="y" />
+            <label for="h" class="form-label">Высота слоя, м:</label>
+            <input name="h" class="form-control" id="h" style="width: 100px;" />
         </div>
 
         <div class="mb-3">
-            <label for="z" class="form-label">Z</label>
-            <input name="z" class="form-control" id="z" />
+            <label for="tmaterial" class="form-label">Начальная температура материала, С:</label>
+            <input name="tmaterial" class="form-control" id="tmaterial" style="width: 100px;" />
+        </div>
+
+        <div class="mb-3">
+            <label for="tgaza" class="form-label">Начальная температура газа, С:</label>
+            <input name="tgaza" class="form-control" id="tgaza" style="width: 100px;" />
+        </div>
+
+        <div class="mb-3">
+            <label for="vgaza" class="form-label">Скорость газа на свободное сечение шахты, м/с:</label>
+            <input name="vgaza" class="form-control" id="vgaza" style="width: 100px;" />
+        </div>
+
+        <div class="mb-3">
+            <label for="cgaza" class="form-label">Средняя теплоемкость газа:</label>
+            <input name="cgaza" class="form-control" id="cgaza" style="width: 100px;" />
+        </div>
+
+        <div class="mb-3">
+            <label for="rashod" class="form-label">Расход материалов, кг/с:</label>
+            <input name="rashod" class="form-control" id="rashod" style="width: 100px;" />
+        </div>
+        <div class="mb-3">
+            <label for="gmaterial" class="form-label">Теплоемкость материалов, кДж:</label>
+            <input name="gmaterial" class="form-control" id="gmaterial" style="width: 100px;" />
+        </div>
+
+        <div class="mb-3">
+            <label for="av" class="form-label">Объемный коэффициент теплоотдачи:</label>
+            <input name="av" class="form-control" id="av" style="width: 100px;" />
+        </div>
+
+        <div class="mb-3">
+            <label for="dapparata" class="form-label">Диаметр аппарата, м:</label>
+            <input name="dapparata" class="form-control" id="dapparata" style="width: 100px;" />
         </div>
 
         <div>
-            <input type="submit" value="название кнопки" class="btn btn-primary" />
-        </div>
-    
-        <div>
-            Выберите пол:
-            <label><input type="radio" name="sex" />Мужской</label>
-            <label><input type="radio" name="sex" />Женский</label>
-        </div>
-
-        <div>
-            Любимый цвет:
-            <input type="radio" name="color" />Красный
-            <input type="radio" name="color" />Синий
-        </div>
-
-        <div>
-            <label><input type="checkbox" />Галочка</label>
-        </div>
-
-        <div>
-            Param B:
-            <select name="paramB">
-                <option>Опция 1</option>
-                <option>Опция 2</option>
-                <option>Опция 3</option>
-            </select>
-        </div>
-
-        <div>
-            <textarea rows="10"></textarea>
+            <input type="submit" value="Рассчитать" class="btn btn-primary" />
         </div>
 
     </form>

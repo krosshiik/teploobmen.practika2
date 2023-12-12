@@ -7,17 +7,17 @@
             var rows = new List<TeploobmenOutputRow>();
 
 
-            for (double i = 0; i < data.Z; i += 0.5)
+            for (double i = 0; i <= data.H; i += 0.5)
             {
-                rows.Add(new TeploobmenOutputRow { X = i, Y = data.X + i });
+                rows.Add(new TeploobmenOutputRow { X = i, Y = data.H + i });
             }
 
 
             return new TeploobmenOutputData
             {
-                Sum = data.X + data.Y,
-                Minus = data.X - data.Y,
-                Proizv = data.X * data.Y,
+                Sum = data.H + data.Tmaterial,
+                Minus = data.H - data.Tmaterial,
+                Proizv = data.H * data.Tmaterial,
                 Rows = rows
  
             };
