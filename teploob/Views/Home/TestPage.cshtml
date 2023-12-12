@@ -1,0 +1,69 @@
+﻿@model TeploobLibrary1.TeploobmenOutputData?
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-left">
+    <h1 class="display-4">TEst PAGE </h1>
+    @if(Model != null)
+    {
+        <div>Сумма: @Model.Sum</div>
+        <div>Разница: @Model.Minus</div>
+        <div>Умножение: @Model.Proizv</div>
+    }
+
+    <form action="/Home/TestPage/" method="post">
+        <div class="mb-3">
+            <label for="x" class="form-label">X</label>
+            <input name="x" class="form-control" id="x" />
+        </div>
+
+        <div class="mb-3">
+            <label for="y" class="form-label">Y</label>
+            <input name="y" class="form-control" id="y" />
+        </div>
+
+        <div class="mb-3">
+            <label for="z" class="form-label">Z</label>
+            <input name="z" class="form-control" id="z" />
+        </div>
+
+        <div>
+            <input type="submit" value="название кнопки" class="btn btn-primary" />
+        </div>
+    
+        <div>
+            Выберите пол:
+            <label><input type="radio" name="sex" />Мужской</label>
+            <label><input type="radio" name="sex" />Женский</label>
+        </div>
+
+        <div>
+            Любимый цвет:
+            <input type="radio" name="color" />Красный
+            <input type="radio" name="color" />Синий
+        </div>
+
+        <div>
+            <label><input type="checkbox" />Галочка</label>
+        </div>
+
+        <div>
+            Param B:
+            <select name="paramB">
+                <option>Опция 1</option>
+                <option>Опция 2</option>
+                <option>Опция 3</option>
+            </select>
+        </div>
+
+        <div>
+            <textarea rows="10"></textarea>
+        </div>
+
+    </form>
+
+   
+ 
+    
+</div>
