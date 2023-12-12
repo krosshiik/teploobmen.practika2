@@ -11,5 +11,7 @@ namespace TeploobLibrary1
         public double Sum { get; set; }
         public double Minus { get; set; }
         public double Proizv { get; set; }
+        public List<TeploobmenOutputRow> Rows { get; set; }
+        
     }
 }
