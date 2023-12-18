@@ -20,11 +20,9 @@
     <br />
 
     @if(Model != null)
-    {
-        <div>Сумма: @Model.Sum</div>
-        <div>Разница: @Model.Minus</div>
-        <div>Умножение: @Model.Proizv</div>
-
+    {   
+        @* <div>m: @Model.m</div>
+        <div>y0: @Model.Proizv</div> *@
         <table class="table table-hover table-bordered">
             <tr>
                 <td>Высота слоя</td>
@@ -34,15 +32,33 @@
                  }
             </tr>
             <tr>
-                <td>Y</td>
+                <td>t</td>
                 @foreach (var number in Model.Rows)
                 {
-                    <td>@number.Y</td>
+                    <td>@number.t</td>
                 }
+
+            </tr>
+            <tr>
+                <td>T</td>
+                @foreach (var number in Model.Rows)
+                {
+                    <td>@number.T</td>
+                }
+
+            </tr>
+            <tr>
+                <td>Разность t-шек</td>
+                @foreach (var number in Model.Rows)
+                {
+                    <td>@number.Tnt</td>
+                }
+
             </tr>
         </table>
     }
 
+    
     <form action="/Home/TestPage/" method="post">
 
         <div class="mb-3">

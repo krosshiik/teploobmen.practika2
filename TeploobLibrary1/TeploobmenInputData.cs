@@ -8,7 +8,7 @@ namespace TeploobLibrary1
 {
     public class TeploobmenInputData
     {
-        public double H {  get; set; }
+        public double H { get; set; }
         public double Tmaterial { get; set; }
         public double Tgaza { get; set; }
         public double Vgaza { get; set; }
@@ -17,5 +17,6 @@ namespace TeploobLibrary1
         public double Gmaterial { get; set; }
         public double AV { get; set; }
         public double Dapparata { get; set; }
+        
     }
 }
