@@ -20,9 +20,9 @@ namespace TeploobLibrary1
 
         public double O { get; set; }
 
-        public double t { get; set; }
+        public double tmal { get; set; }
 
-        public double T { get; set; }
+        public double Tbol { get; set; }
 
         public double Tnt { get; set; }
 

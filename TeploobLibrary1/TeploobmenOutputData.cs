@@ -12,6 +12,6 @@ namespace TeploobLibrary1
         public double y0 { get; set; }
         public double Proizv { get; set; }
         public List<TeploobmenOutputRow> Rows { get; set; }
-        public List<TeploobmenOutputRow> Rows1 { get; set; }
+        
     }
 }

@@ -28,8 +28,8 @@
 
                 rows.Add(new TeploobmenOutputRow { 
                     X = i,                  
-                    t = t,
-                    T = T,
+                    tmal = t,
+                    Tbol = T,
                     Tnt = Tnt
 
                 });
@@ -40,7 +40,7 @@
 
             {
                 Rows = rows,
-                Rows1 = rows1,
+                
                 Proizv = Y0
             };
                 

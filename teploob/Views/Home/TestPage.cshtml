@@ -81,44 +81,53 @@
                     <label for="dapparata" class="form-label">Диаметр аппарата, м:</label>
                     <input name="dapparata" class="form-control" id="dapparata" style="width: 100px;" />
                 </div>
-
+                <br />
                 <div>
                     <input type="submit" value="Рассчитать" class="btn btn-primary" />
                 </div>
             </form>
         </div>
         <br /><br /><br /><br /><br />
+        <style>
+            .custom-table {
+                background-color: #f2f2f2; /* Set the desired background color */
+            }
+
+                .custom-table td.bold-text {
+                    font-weight: bold;
+                }
+        </style>
         <div class="table-container">
-            <!-- Table -->
+            
             @if (Model != null)
             {
-                <table class="table table-hover table-bordered">
+                <table class="table table-hover table-bordered custom-table">
                     <tr>
-                        <td>Высота слоя</td>
+                        <td class="bold-text text-center">Высота слоя</td>
                         @foreach (var number in Model.Rows)
                         {
-                            <td>@number.X</td>
+                            <td class="bold-text text-center">@number.X</td>
                         }
                     </tr>
                     <tr>
-                        <td>t</td>
+                        <td class="bold-text text-center">t</td>
                         @foreach (var number in Model.Rows)
                         {
-                            <td>@number.t</td>
+                            <td class="text-center">@number.tmal</td>
                         }
                     </tr>
                     <tr>
-                        <td>T</td>
+                        <td class="bold-text text-center">T</td>
                         @foreach (var number in Model.Rows)
                         {
-                            <td>@number.T</td>
+                            <td class="text-center">@number.Tbol</td>
                         }
                     </tr>
                     <tr>
-                        <td>Разность t-шек</td>
+                        <td class="bold-text text-center">Разность t-шек</td>
                         @foreach (var number in Model.Rows)
                         {
-                            <td>@number.Tnt</td>
+                            <td class="text-center">@number.Tnt</td>
                         }
                     </tr>
                 </table>
