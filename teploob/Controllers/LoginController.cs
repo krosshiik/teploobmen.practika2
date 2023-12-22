@@ -4,12 +4,6 @@ namespace teploob.Controllers
 {
     public class LoginController : Controller
     {
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpPost]
         public IActionResult Index(string login, string password)
         {
@@ -17,6 +11,11 @@ namespace teploob.Controllers
         }
 
         [HttpGet]
+        public IActionResult Index()
+        {
+            return View();
+        }
+
         public IActionResult Register()
         {
             return View();
@@ -27,6 +26,5 @@ namespace teploob.Controllers
         {
             return View();
         }
-
     }
 }

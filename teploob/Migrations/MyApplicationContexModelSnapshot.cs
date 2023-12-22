@@ -23,58 +23,39 @@ namespace teploob.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<double>("AV")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("Cgaza")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("Dapparata")
+                    b.Property<double>("B")
                         .HasColumnType("REAL");
 
                     b.Property<DateTime>("DateAdd")
                         .HasColumnType("TEXT");
 
-                    b.Property<double>("Gmaterial")
+                    b.Property<double>("O")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("H")
+                    b.Property<double>("Tbol")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("Rashod")
+                    b.Property<double>("Tnt")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("Tgaza")
+                    b.Property<double>("X")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("Tmaterial")
+                    b.Property<double>("Y")
                         .HasColumnType("REAL");
 
-                    b.Property<double>("Vgaza")
+                    b.Property<double>("exp1")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("mexp")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("tmal")
                         .HasColumnType("REAL");
 
                     b.HasKey("id");
 
                     b.ToTable("InputDatas");
-                });
-
-            modelBuilder.Entity("teploob.Data.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }
