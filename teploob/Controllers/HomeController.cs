@@ -20,7 +20,11 @@ namespace teploob.Controllers
 
         public IActionResult Index()
         {
-            return View();
+
+            var inputDatas = _contex.InputDatas.ToList();
+
+
+            return View(inputDatas);
         }
 
 
@@ -44,19 +48,58 @@ namespace teploob.Controllers
                 DateAdd = DateTime.Now,
 
             });
+
             _contex.SaveChanges();
 
 
-            var model = new TestPageModel { A = null, B = null, Collection = new List<string> { "A", "B", "C", "D" } };
+            var model = new TestPageModel
+            {
+                InputData = new InputData
+                {
+                    H = inputData.H,
+                    Tmaterial = inputData.Tmaterial,
+                    Tgaza = inputData.Tgaza,
+                    Vgaza = inputData.Vgaza,
+                    Cgaza = inputData.Cgaza,
+                    Rashod = inputData.Rashod,
+                    Gmaterial = inputData.Gmaterial,
+                    AV = inputData.AV,
+                    Dapparata = inputData.Dapparata
+                },
+                OutputData = result
+            };
 
-            return View(result);
+            return View(model);
         }
 
         [HttpGet]
-        public IActionResult TestPage()
+        public IActionResult TestPage(int variant)
         {
-            return View();
+            var inputData = _contex.InputDatas.FirstOrDefault(x => x.id == variant);
+
+            var model = new TestPageModel
+            {
+                InputData = inputData,
+              
+            };
+
+            return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var inputData = _contex.InputDatas.FirstOrDefault(x => x.id == id);
+
+            if (inputData != null)
+            {
+                _contex.InputDatas.Remove(inputData);
+                _contex.SaveChanges();
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         public IActionResult Privacy()
         {
             return View();

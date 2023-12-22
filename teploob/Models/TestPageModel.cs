@@ -1,9 +1,12 @@
-﻿namespace teploob.Models
+﻿using teploob.Data;
+using TeploobLibrary1;
+
+namespace teploob.Models
 {
     public class TestPageModel
     {
-        public int? A {  get; set; }
-        public string? B { get; set; }
-        public List<string> Collection { get; set; }
+        public TeploobmenOutputData? OutputData {  get; set; }
+        public InputData? InputData { get; set; }
+        
     }
 }
