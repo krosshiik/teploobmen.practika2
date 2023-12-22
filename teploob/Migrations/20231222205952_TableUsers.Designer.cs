@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using teploob.Data;
 
@@ -10,9 +11,10 @@ using teploob.Data;
 namespace teploob.Migrations
 {
     [DbContext(typeof(MyApplicationContex))]
-    partial class MyApplicationContexModelSnapshot : ModelSnapshot
+    [Migration("20231222205952_TableUsers")]
+    partial class TableUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.25");

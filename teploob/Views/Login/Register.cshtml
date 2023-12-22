@@ -1,0 +1,56 @@
+﻿@model List<InputData>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">История расчётов</h1>
+</div>
+
+
+
+<table class="table table-hover table-bordered custom-table">
+    <tr>
+        <th>id</th>
+        <th>Высота слоя, м</th>
+        <th>Начальная температура материала</th>
+        <th>Начальная температура газа</th>
+        <th>Скорость газа на свободное сечение шахты, м/с</th>
+        <th>Средняя теплоемкость газа, кДж/(м3 • К)</th>
+        <th>Расход материалов кг/с</th>
+        <th>Теплоемкость материалов, кДж/(кг • К)</th>
+        <th>Объемный коэффициент теплоотдачи, Вт/(м3 • К)</th>
+        <th>Диаметр аппарата</th>
+        <th>Дата расчёта</th>
+        <th></th>
+
+    </tr>
+
+
+   @*  <tr>
+        <td class="bold-text text-center">Высота слоя</td> *@
+
+        @foreach (var inputData in Model)
+        {
+            <tr> 
+                <td>@inputData.id</td>
+                <td>@inputData.H</td>
+                <td>@inputData.Tmaterial</td>
+                <td>@inputData.Tgaza</td>
+                <td>@inputData.Vgaza</td>
+                <td>@inputData.Cgaza</td>
+                <td>@inputData.Rashod</td>
+                <td>@inputData.Gmaterial</td>
+                <td>@inputData.AV</td>
+                <td>@inputData.Dapparata</td>
+                <td>@inputData.DateAdd</td>
+                <td>
+                    <a href="/Home/TestPage/?variant=@inputData.id">Открыть</a>
+                    <a href="/Home/Delete/?id=@inputData.id">Удалить</a>
+                    </td>
+            </tr>
+  
+        }
+    @* </tr> *@
+
+</table>
