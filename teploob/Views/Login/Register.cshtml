@@ -4,26 +4,24 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Авторизация</h1>
+    <h1 class="display-4">Регистрация</h1>
 </div>
 
-<form action="/Login/Index/" method="post">
+<form action="/Login/Register/" method="post">
     <div asp-validation-summary="All"></div>
 
-    <div class="mb-0">
+    <div class="mb-0" text="text-center">
         <label for="login" class="form-label">Логин</label>
         <input name="login" class="form-control" id="login" />
     </div>
-    <div class="mb-0">
+    <div class="mb-0" text="text-center">
         <label for="password" class="form-label">Пароль</label>
         <input name="password" type="password" class="form-control" id="password" />
     </div>
 
     <br />
     <div>
-        <input type="submit" value="Войти в ЛК" class="btn btn-primary" />
+        <input type="submit" value="Зарегистрироваться" class="btn btn-primary" />
     </div>
 </form>
-
-
 
