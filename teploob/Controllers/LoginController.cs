@@ -72,7 +72,10 @@ namespace teploob.Controllers
 
         private async Task AuthenticateAsync(User user)
         {
-            var claims = new List<Claim> { new Claim(ClaimTypes.Name, user.Login) };
+            var claims = new List<Claim> { 
+                new Claim("Id", user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Login)};
+
 
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "Cookies");
 

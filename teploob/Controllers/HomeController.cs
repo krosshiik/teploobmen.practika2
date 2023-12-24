@@ -20,8 +20,9 @@ namespace teploob.Controllers
 
         public IActionResult Index()
         {
+            var userId = GetUserId();
 
-            var inputDatas = _contex.InputDatas.ToList();
+            var inputDatas = _contex.InputDatas.Where(x => x.UserId == userId ||x.UserId == null).ToList();
 
 
             return View(inputDatas);
@@ -34,8 +35,10 @@ namespace teploob.Controllers
             var lib = new TeploobmenLib();
             var result = lib.Calc(inputData);
 
+
             _contex.InputDatas.Add(new InputData
             {
+                UserId = GetUserId(),
                 H = inputData.H,
                 Tmaterial = inputData.Tmaterial,
                 Tgaza = inputData.Tgaza,
@@ -75,7 +78,8 @@ namespace teploob.Controllers
         [HttpGet]
         public IActionResult TestPage(int variant)
         {
-            var inputData = _contex.InputDatas.FirstOrDefault(x => x.id == variant);
+            var userId = GetUserId();
+            var inputData = _contex.InputDatas.FirstOrDefault(x => x.id == variant && (x.UserId == userId || x.UserId == null));
 
             var model = new TestPageModel
             {
@@ -89,7 +93,9 @@ namespace teploob.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var inputData = _contex.InputDatas.FirstOrDefault(x => x.id == id);
+            var userId = GetUserId();
+
+            var inputData = _contex.InputDatas.FirstOrDefault(x => x.id == id && x.UserId == userId);
 
             if (inputData != null)
             {
@@ -109,6 +115,14 @@ namespace teploob.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        private int? GetUserId()
+        {
+            var userIdString = User.FindFirst("Id")?.Value;
+
+            int? userId = userIdString != null ? Convert.ToInt32(userIdString) : null;
+            return userId;
         }
     }
 }

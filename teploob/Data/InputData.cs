@@ -22,6 +22,8 @@
 
         public double Dapparata { get; set; }
 
+        public int? UserId { get; set; }
+
         public DateTime DateAdd { get; set; }
 
     }
