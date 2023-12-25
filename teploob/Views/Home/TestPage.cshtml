@@ -34,7 +34,7 @@
 
 <body>
     <div class="container">
-        <div class="input-container">
+        <div class="input-container container border p-3 d-inline-block" style="max-width: 500px;">
             <h5><b>Введите свои данные для рассчета:</b></h5>
             <br>
             <form action="/Home/TestPage/" method="post">
@@ -83,7 +83,7 @@
                 </div>
                 <div class="mb-0">
                     <label for="name" class="form-label">Введите название для сохранения расчёта:</label>
-                    <input name="name" class="form-control" id="name" value="" />
+                    <input name="name" class="form-control" id="name" value="" style="width: 100px;" />
                 </div>
                 <br />
                 <div>
@@ -102,52 +102,82 @@
                     font-weight: bold;
                 }
         </style>
-        <div class="table-container">
-            
+
+
+        <div class="table-container input-container container @if (Model.OutputData == null) {
+        <text>d-none</text>
+ } else {
+        <text>border p-3</text>
+ } d-inline-block">
+
             @if (Model.OutputData != null)
             {
-                <table class="table table-hover table-bordered custom-table">
-                    <tr>
-                        <td class="bold-text text-center">Высота слоя</td>
-                        @foreach (var number in Model.OutputData.Rows)
-                        {
-                            <td class="bold-text text-center">@number.X</td>
-                        }
-                    </tr>
-                    <tr>
-                        <td class="bold-text text-center">t</td>
-                        @foreach (var number in Model.OutputData.Rows)
-                        {
-                            <td class="text-center">@number.tmal</td>
-                        }
-                    </tr>
-                    <tr>
-                        <td class="bold-text text-center">T</td>
-                        @foreach (var number in Model.OutputData.Rows)
-                        {
-                            <td class="text-center">@number.Tbol</td>
-                        }
-                    </tr>
-                    <tr>
-                        <td class="bold-text text-center">Разность t-шек</td>
-                        @foreach (var number in Model.OutputData.Rows)
-                        {
-                            <td class="text-center">@number.Tnt</td>
-                        }
-                    </tr>
-                </table>
-                <div>
-                    <canvas id="myChart"></canvas>
+
+                <div class="border p-3">
+                    <div class="text-center">
+                        <h5><b>Ваша таблица с посчитанными данными:</b></h5>
+                    </div>
+
+                    <table class="table table-hover table-bordered custom-table">
+                        <tr>
+                            <td class="bold-text text-center">Высота слоя</td>
+                            @foreach (var number in Model.OutputData.Rows)
+                            {
+                                <td class="bold-text text-center">@number.X</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td class="bold-text text-center">t</td>
+                            @foreach (var number in Model.OutputData.Rows)
+                            {
+                                <td class="text-center">@number.tmal</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td class="bold-text text-center">T</td>
+                            @foreach (var number in Model.OutputData.Rows)
+                            {
+                                <td class="text-center">@number.Tbol</td>
+                            }
+                        </tr>
+                        <tr>
+                            <td class="bold-text text-center">Разность t-шек</td>
+                            @foreach (var number in Model.OutputData.Rows)
+                            {
+                                <td class="text-center">@number.Tnt</td>
+                            }
+                        </tr>
+                    </table>
                 </div>
+
+                <br />
+
+                <div class="border p-3">
+                    <div class="text-center">
+                        <h5><b>Построенные графики по вашим данным😊😊</b></h5>
+                    </div>
+                    <br />
+                    <div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+                    <br />
+
+                <br />
+                <div class="form-group container border p-2 text-center" style="background-color: lightgray; border: 2px solid black;">
+                         <h2>ЗДЕСЬ МОГЛА БЫ БЫТЬ ВАША РЕКЛАМА <a href="https://t.me/krosshiik">tg@krosshiik</a></h2>
+                </div>
+
             }
         </div>
+
     </div>
 </body>
 </html>
 
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 @{
     var outputData = Model.OutputData;
     var labels = outputData?.Rows?.Select(x => x.X).ToList() ?? new List<double>();
@@ -187,17 +217,23 @@
                 {
                     label: 'Температура t',
                     data: tmalData,
-                    borderWidth: 1
+                    borderWidth: 2,
+                    borderColor: 'blue',
+                    backgroundColor: 'transparent'
                 },
                 {
                     label: 'Разность температур',
                     data: TntData,
-                    borderWidth: 1
+                    borderWidth: 2,
+                    borderColor: 'red',
+                    backgroundColor: 'transparent'
                 },
                 {
                     label: 'Температура T',
                     data: tbolData,
-                    borderWidth: 1
+                    borderWidth: 2,
+                    borderColor: 'green',
+                    backgroundColor: 'transparent'
                 }
             ]
         },
@@ -220,6 +256,7 @@
         }
     });
 </script>
+
 
 
 

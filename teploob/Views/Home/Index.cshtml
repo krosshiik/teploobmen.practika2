@@ -3,13 +3,22 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Тут история расчётов, @(User.Identity?.Name ?? "guest")</h1>
+<style>
+    body {
+        background-image: url("/images/snow.jpg");
+        background-size: cover;
+    }
+</style>
+
+
+<div class="text-center" style="border: thick double #32a1ce; background-color: lightblue;">
+    <h1 class="display-4">❄️☃️❄️[тут история расчётов, @(User.Identity?.Name ?? "guest")]❄️☃️❄️</h1>
 </div>
 
 
+<br />
 
-<table class="table table-hover table-bordered custom-table">
+<table class="table table-hover table-bordered custom-table" style="background-color: lightblue;">
     <tr>
         <th>id</th>
         <th>Высота слоя, м</th>
@@ -27,8 +36,7 @@
     </tr>
 
 
-   @*  <tr>
-        <td class="bold-text text-center">Высота слоя</td> *@
+   
 
         @foreach (var inputData in Model)
         {
