@@ -8,6 +8,7 @@ namespace TeploobLibrary1
 {
     public class TeploobmenInputData
     {
+        public string? name {  get; set; }
         public double H { get; set; }
         public double Tmaterial { get; set; }
         public double Tgaza { get; set; }

@@ -81,10 +81,15 @@
                     <label for="dapparata" class="form-label">Диаметр аппарата, м:</label>
                     <input name="dapparata" class="form-control" id="dapparata" value="@Model.InputData?.Dapparata" style="width: 100px;" />
                 </div>
+                <div class="mb-0">
+                    <label for="name" class="form-label">Введите название для сохранения расчёта:</label>
+                    <input name="name" class="form-control" id="name" value="" />
+                </div>
                 <br />
                 <div>
                     <input type="submit" value="Рассчитать" class="btn btn-primary" />
                 </div>
+
             </form>
         </div>
         <br /><br /><br /><br /><br />
@@ -131,9 +136,93 @@
                         }
                     </tr>
                 </table>
+                <div>
+                    <canvas id="myChart"></canvas>
+                </div>
             }
         </div>
     </div>
 </body>
 </html>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js" integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+@{
+    var outputData = Model.OutputData;
+    var labels = outputData?.Rows?.Select(x => x.X).ToList() ?? new List<double>();
+    var tmalData = outputData?.Rows?.Select(x => x.tmal).ToList() ?? new List<double>();
+    var TntData = outputData?.Rows?.Select(x => x.Tnt).ToList() ?? new List<double>();
+    var TbolData = outputData?.Rows?.Select(x => x.Tbol).ToList() ?? new List<double>();
+    var jsonLabels = Json.Serialize(labels);
+    var jsonTmalData = Json.Serialize(tmalData);
+    var jsonTntData = Json.Serialize(TntData);
+    var jsonTbolData = Json.Serialize(TbolData);
+}
+
+<script>
+    const labels = @Html.Raw(jsonLabels);
+    const tmalData = @Html.Raw(jsonTmalData);
+    const TntData = @Html.Raw(jsonTntData);
+    const tbolData = @Html.Raw(jsonTbolData);
+
+    // Get the last label separately
+    const lastLabel = labels[labels.length - 1];
+    const lastTmalData = tmalData[labels.length - 1];
+    const lastTntData = TntData[labels.length - 1];
+    const lastTbolData = tbolData[labels.length - 1];
+
+    // Add the last data points to match the last label
+    tmalData.push(lastTmalData);
+    TntData.push(lastTntData);
+    tbolData.push(lastTbolData);
+
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Температура t',
+                    data: tmalData,
+                    borderWidth: 1
+                },
+                {
+                    label: 'Разность температур',
+                    data: TntData,
+                    borderWidth: 1
+                },
+                {
+                    label: 'Температура T',
+                    data: tbolData,
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Высота слоя, м'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Температура'
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+
+
+
+
 

@@ -24,7 +24,7 @@
                 double O = Math.Round(mexp / (1 - m * Math.Exp(((m - 1) * y0) / m)), 4);
                 double t = Math.Round(data.Tmaterial + (data.Tgaza - data.Tmaterial) * B, 0);
                 double T = Math.Round(data.Tmaterial + (data.Tgaza - data.Tmaterial) * O, 0);
-                double Tnt = T - t;
+                double Tnt = Math.Abs(T - t);
 
                 rows.Add(new TeploobmenOutputRow { 
                     X = i,                  

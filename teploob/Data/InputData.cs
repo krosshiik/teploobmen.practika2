@@ -4,6 +4,8 @@
     {
         public int id {  get; set; }
 
+        public string name { get; set; }
+
         public double H { get; set; }
 
         public double Tmaterial { get; set; }

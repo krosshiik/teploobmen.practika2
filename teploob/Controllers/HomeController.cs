@@ -35,24 +35,27 @@ namespace teploob.Controllers
             var lib = new TeploobmenLib();
             var result = lib.Calc(inputData);
 
-
-            _contex.InputDatas.Add(new InputData
+            if(!string.IsNullOrEmpty(inputData.name))
             {
-                UserId = GetUserId(),
-                H = inputData.H,
-                Tmaterial = inputData.Tmaterial,
-                Tgaza = inputData.Tgaza,
-                Vgaza = inputData.Vgaza,
-                Cgaza = inputData.Cgaza,
-                Rashod = inputData.Rashod,
-                Gmaterial = inputData.Gmaterial,
-                AV = inputData.AV,
-                Dapparata = inputData.Dapparata,
-                DateAdd = DateTime.Now,
+                _contex.InputDatas.Add(new InputData
+                {
+                    UserId = GetUserId(),
+                    H = inputData.H,
+                    Tmaterial = inputData.Tmaterial,
+                    Tgaza = inputData.Tgaza,
+                    Vgaza = inputData.Vgaza,
+                    Cgaza = inputData.Cgaza,
+                    Rashod = inputData.Rashod,
+                    Gmaterial = inputData.Gmaterial,
+                    AV = inputData.AV,
+                    Dapparata = inputData.Dapparata,
+                    name = inputData.name,
+                    DateAdd = DateTime.Now,
 
-            });
+                });
 
-            _contex.SaveChanges();
+                _contex.SaveChanges();
+            }
 
 
             var model = new TestPageModel
