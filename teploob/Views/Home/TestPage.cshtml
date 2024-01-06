@@ -39,58 +39,83 @@
             <br>
             <form action="/Home/TestPage/" method="post">
                 <div class="mb-0">
-                    <label for="h" class="form-label">Высота слоя, мм:</label>
-                    <input name="h" class="form-control" id="h" value="@Model.InputData?.H" style="width: 100px;" />
+                    <label for="h" class="form-label">Высота слоя, м:</label>
+                    <input name="h" class="form-control" id="h" value="@Model.InputData?.H" style="width: 100px;" type="number" step="any" />
                 </div>
 
                 <div class="mb-0">
                     <label for="tmaterial" class="form-label">Начальная температура материала, С:</label>
-                    <input name="tmaterial" class="form-control" id="tmaterial" value="@Model.InputData?.Tmaterial" style="width: 100px;" />
+                    <input name="tmaterial" class="form-control" id="tmaterial" value="@Model.InputData?.Tmaterial" style="width: 100px;" type="number" step="any" />
                 </div>
 
                 <div class="mb-0">
                     <label for="tgaza" class="form-label">Начальная температура газа, С:</label>
-                    <input name="tgaza" class="form-control" id="tgaza" value="@Model.InputData?.Tgaza" style="width: 100px;" />
+                    <input name="tgaza" class="form-control" id="tgaza" value="@Model.InputData?.Tgaza" style="width: 100px;" type="number" step="any" />
                 </div>
 
                 <div class="mb-0">
                     <label for="vgaza" class="form-label">Скорость газа на свободное сечение шахты, м/с:</label>
-                    <input name="vgaza" class="form-control" id="vgaza" value="@Model.InputData?.Vgaza" style="width: 100px;" />
+                    <input name="vgaza" class="form-control" id="vgaza" value="@Model.InputData?.Vgaza" style="width: 100px;" type="number" step="any" />
                 </div>
 
                 <div class="mb-0">
                     <label for="cgaza" class="form-label">Средняя теплоемкость газа:</label>
-                    <input name="cgaza" class="form-control" id="cgaza" value="@Model.InputData?.Cgaza" style="width: 100px;" />
+                    <input name="cgaza" class="form-control" id="cgaza" value="@Model.InputData?.Cgaza" style="width: 100px;" type="number" step="any" />
                 </div>
 
                 <div class="mb-0">
                     <label for="rashod" class="form-label">Расход материалов, кг/с:</label>
-                    <input name="rashod" class="form-control" id="rashod" value="@Model.InputData?.Rashod" style="width: 100px;" />
+                    <input name="rashod" class="form-control" id="rashod" value="@Model.InputData?.Rashod" style="width: 100px;" type="number" step="any" />
                 </div>
+
                 <div class="mb-0">
                     <label for="gmaterial" class="form-label">Теплоемкость материалов, кДж:</label>
-                    <input name="gmaterial" class="form-control" id="gmaterial" value="@Model.InputData?.Gmaterial" style="width: 100px;" />
+                    <input name="gmaterial" class="form-control" id="gmaterial" value="@Model.InputData?.Gmaterial" style="width: 100px;" type="number" step="any" />
                 </div>
 
                 <div class="mb-0">
                     <label for="av" class="form-label">Объемный коэффициент теплоотдачи:</label>
-                    <input name="av" class="form-control" id="av" value="@Model.InputData?.AV" style="width: 100px;" />
+                    <input name="av" class="form-control" id="av" value="@Model.InputData?.AV" style="width: 100px;" type="number" step="any" />
                 </div>
 
                 <div class="mb-0">
                     <label for="dapparata" class="form-label">Диаметр аппарата, м:</label>
-                    <input name="dapparata" class="form-control" id="dapparata" value="@Model.InputData?.Dapparata" style="width: 100px;" />
+                    <input name="dapparata" class="form-control" id="dapparata" value="@Model.InputData?.Dapparata" style="width: 100px;" type="number" step="any" />
                 </div>
+
                 <div class="mb-0">
                     <label for="name" class="form-label">Введите название для сохранения расчёта:</label>
-                    <input name="name" class="form-control" id="name" value="" style="width: 100px;" />
+                    <input name="name" class="form-control" id="name" value="" style="width: 100px;" required />
                 </div>
                 <br />
                 <div>
-                    <input type="submit" value="Рассчитать" class="btn btn-primary" />
+                    <input type="submit" value="Рассчитать" class="btn btn-primary" id="submitButton" disabled />
+                    <span id="errorMessage" style="color: red; display: none;">Заполните все поля</span>
                 </div>
-
             </form>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var inputs = document.querySelectorAll('input.form-control');
+                    inputs.forEach(function (input) {
+                        input.addEventListener('input', checkFields);
+                    });
+
+                    function checkFields() {
+                        var allFieldsFilled = Array.from(inputs).every(input => input.value !== '');
+                        var submitButton = document.getElementById('submitButton');
+                        var errorMessage = document.getElementById('errorMessage');
+
+                        if (allFieldsFilled) {
+                            submitButton.disabled = false;
+                            errorMessage.style.display = 'none';
+                        } else {
+                            submitButton.disabled = true;
+                            errorMessage.style.display = 'inline';
+                        }
+                    }
+                });
+            </script>
         </div>
         <br /><br /><br /><br /><br />
         <style>
